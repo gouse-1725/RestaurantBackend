@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.restaurant.model.Meal;
 import com.example.restaurant.service.MealService;
@@ -18,20 +22,20 @@ public class MealController {
     public List<Meal> getAllMeals() {
         return mealService.getAllMeals();
     }
-    
+
     @GetMapping("/getbyid/{id}")
     public Meal getMeal(@PathVariable Long id) {
         return mealService.getMeal(id);
     }
     
-    @PostMapping
-    public Meal createMeal(@RequestBody Meal meal) {
-        return mealService.createMeal(meal);
+    @PostMapping("/category/{categoryId}")
+    public Meal createMeal(@PathVariable Long categoryId, @RequestBody Meal meal) {
+        return mealService.createMeal(categoryId, meal);
     }
     
-    @PostMapping("/bulk")
-    public List<Meal> createMeals(@RequestBody List<Meal> meals) {
-        return mealService.createMeals(meals);
+    @PostMapping("/bulk/category/{categoryId}")
+    public List<Meal> createMeals(@PathVariable Long categoryId, @RequestBody List<Meal> meals) {
+        return mealService.createMeals(categoryId, meals);
     }
     
     @PutMapping("/updatebyid/{id}")
@@ -47,5 +51,10 @@ public class MealController {
     @GetMapping("/category/{categoryId}/item/{itemId}")
     public Meal getMealByCategoryAndId(@PathVariable Long categoryId, @PathVariable Long itemId) {
         return mealService.getMealByCategoryAndId(categoryId, itemId);
+    }
+    
+    @GetMapping("/category/{categoryId}")
+    public List<Meal> getMealsByCategory(@PathVariable Long categoryId) {
+        return mealService.getMealsByCategory(categoryId);
     }
 }

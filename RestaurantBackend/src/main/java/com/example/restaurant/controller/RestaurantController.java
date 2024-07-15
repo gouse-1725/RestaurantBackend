@@ -10,6 +10,7 @@ import com.example.restaurant.service.RestaurantService;
 
 @RestController
 @RequestMapping("/api/restaurants")
+@CrossOrigin(origins = "*")
 public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;

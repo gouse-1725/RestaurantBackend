@@ -12,6 +12,7 @@ import com.example.restaurant.repository.RestaurantRepository;
 
 @Service
 public class CategoryService {
+    
     @Autowired
     private CategoryRepository categoryRepository;
     
@@ -31,8 +32,11 @@ public class CategoryService {
     }
     
     public List<Category> createCategories(List<Category> categories, Long restaurantId) {
-        Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(() -> new RuntimeException("Restaurant not found"));
+        Restaurant restaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new RuntimeException("Restaurant not found"));
+        
         categories.forEach(category -> category.setRestaurant(restaurant));
+        
         return categoryRepository.saveAll(categories);
     }
     
@@ -46,5 +50,10 @@ public class CategoryService {
     
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
+    }
+    
+    public List<Category> getCategoriesByRestaurant(Long restaurantId) {
+        // Implement logic to fetch categories by restaurant ID from repository
+        return categoryRepository.findByRestaurantId(restaurantId);
     }
 }

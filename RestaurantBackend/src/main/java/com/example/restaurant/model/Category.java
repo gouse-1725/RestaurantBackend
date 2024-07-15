@@ -13,7 +13,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private Long idCategory;
+   // private Long idCategory;
     
     private String strCategory;
     
@@ -38,13 +38,13 @@ public class Category {
         this.id = id;
     }
 
-    public Long getIdCategory() {
+    /*  public Long getIdCategory() {
         return idCategory;
     }
 
     public void setIdCategory(Long idCategory) {
         this.idCategory = idCategory;
-    }
+    }*/
 
     public String getStrCategory() {
         return strCategory;

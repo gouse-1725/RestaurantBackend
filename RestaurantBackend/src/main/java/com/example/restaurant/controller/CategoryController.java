@@ -43,4 +43,9 @@ public class CategoryController {
     public void deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
     }
+    
+    @GetMapping("/restaurant/{restaurantId}")
+    public List<Category> getCategoriesByRestaurant(@PathVariable Long restaurantId) {
+        return categoryService.getCategoriesByRestaurant(restaurantId);
+    }
 }

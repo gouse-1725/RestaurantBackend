@@ -11,14 +11,14 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private Long idMeal;
+    //private Long idMeal;
     
     private String strMeal;
     
     private String strMealThumb;
     
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name="category_id")
     @JsonBackReference
     private Category category;
     
@@ -46,13 +46,13 @@ public class Meal {
         this.id = id;
     }
 
-    public Long getIdMeal() {
+   /* public Long getIdMeal() {
         return idMeal;
     }
 
     public void setIdMeal(Long idMeal) {
         this.idMeal = idMeal;
-    }
+    }*/
 
     public String getStrMeal() {
         return strMeal;
