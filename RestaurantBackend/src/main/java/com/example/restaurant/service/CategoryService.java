@@ -41,11 +41,14 @@ public class CategoryService {
     }
     
     public Category updateCategory(Long id, Category category) {
-        if (categoryRepository.existsById(id)) {
-            category.setId(id);
-            return categoryRepository.save(category);
-        }
-        return null;
+        return categoryRepository.findById(id)
+                .map(existingCategory -> {
+                    existingCategory.setStrCategory(category.getStrCategory());
+                    existingCategory.setStrCategoryThumb(category.getStrCategoryThumb());
+                    existingCategory.setStrCategoryDescription(category.getStrCategoryDescription());
+                    return categoryRepository.save(existingCategory);
+                })
+                .orElse(null);
     }
     
     public void deleteCategory(Long id) {
@@ -53,7 +56,6 @@ public class CategoryService {
     }
     
     public List<Category> getCategoriesByRestaurant(Long restaurantId) {
-        // Implement logic to fetch categories by restaurant ID from repository
         return categoryRepository.findByRestaurantId(restaurantId);
     }
 }

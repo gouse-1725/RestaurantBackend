@@ -11,6 +11,7 @@ import com.example.restaurant.service.CategoryService;
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
+    
     @Autowired
     private CategoryService categoryService;
     
